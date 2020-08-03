@@ -23,9 +23,18 @@
     "npm": ">= 6.11.3"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "cron": "^1.8.2",
+    "exchange-service": "^1.0.5-alpha",
+    "moment": "^2.27.0",
+    "moment-round": "^1.0.1",
+    "request-promise-native": "^1.0.9",
+    "tulind": "^0.8.18"
+  },
   "main": "lib/index.js",
   "devDependencies": {
+    "@types/cron": "^1.7.2",
+    "@types/moment-round": "^1.0.3",
     "@types/node": "^12.7.4",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
