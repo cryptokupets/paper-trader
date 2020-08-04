@@ -74,7 +74,6 @@ export class IndicatorService {
                         const { key, name, options } = indicatorInput;
                         const start = 1 + getStart(name, options);
                         const candles1 = candles
-                            // .reverse()
                             .slice(0, start)
                             .reverse();
                         if (candles1.length < start) {

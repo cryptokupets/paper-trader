@@ -44,16 +44,6 @@ export class PaperTrader extends EventEmitter {
     }
 
     public start() {
-        // подписывается на таймер
-        // по таймеру загружаются все свечи
-        // если есть новая то продложается дальше
-        // хотя почему именно трейдер?
-        // потому что индикатору все равно в какой момент появилась порция индикаторов, он их вычисляет с запасом
-        // а вот советник должен генерировать только реальные советы
-        // значит таймер должен быть внутри советника
-
-        // const startTime = moment.utc().toISOString();
-        // console.log(startTime);
         const startMoment = moment.utc();
         const {
             exchange,
@@ -75,14 +65,9 @@ export class PaperTrader extends EventEmitter {
         });
         this.advisor = advisor;
         advisor.onAdvice((data) => {
-            // это должно быть позже старта
-            // должен быть достаточный баланс
-            // для трейда требуется тикер
-            const { time, side } = data;
-            this.side = side; // по правильному сигнал должен поступать только тогда, когда свеча сформирована, а не каждую секунду
-
+            const { side } = data;
+            this.side = side;
             const { currencyAvailable, assetAvailable } = this;
-            console.log(side, currencyAvailable, assetAvailable);
             if (side === "buy" && currencyAvailable > 0) {
                 this.buy();
             } else if (side === "sell" && assetAvailable > 0) {
@@ -120,7 +105,6 @@ export class PaperTrader extends EventEmitter {
 
     private async buy() {
         const price = await this.getPrice();
-        // console.log(price);
         await this.createOrder({
             side: "buy",
             price,
@@ -130,7 +114,6 @@ export class PaperTrader extends EventEmitter {
 
     private async sell() {
         const price = await this.getPrice();
-        // console.log(price);
         await this.createOrder({
             side: "sell",
             price,
@@ -169,8 +152,6 @@ export class PaperTrader extends EventEmitter {
                 return Promise.reject();
         }
 
-        // вернуть ошибку, если невозможно выполнить
-        // изменить баланс
         setTimeout(() => {
             const time = moment.utc().toISOString();
             if (side === "buy") {
