@@ -1,7 +1,7 @@
 {
   "name": "paper-trader",
-  "version": "1.0.0-alpha1",
-  "description": "...",
+  "version": "1.0.0-alpha2",
+  "description": "Paper trading service",
   "repository": {
     "type": "git",
     "url": "https://github.com/cryptokupets/paper-trader.git"
