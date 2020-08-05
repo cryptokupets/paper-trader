@@ -2,7 +2,7 @@ require("mocha");
 const { assert } = require("chai");
 const { PaperTrader } = require("../lib/index");
 
-describe("PaperTrader", () => {
+describe.skip("PaperTrader", () => {
     // TODO при первом запуске не должно быть трейдов задним числом, только в текущий момент
     // это значит, что необходимо загрузить первоначальные данные, оставить только нужные для расчета и вычислить совет
     it("test", function (done) {

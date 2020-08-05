@@ -15,13 +15,11 @@ export class Timer extends EventEmitter {
     public start() {
         const { period } = this;
         const nextTime = moment.utc().ceil(period, "minutes"); // FIXME переделать в минуты и часы
+        this._emitTime(nextTime.toISOString());
         this.cronJob = new CronJob(
             nextTime,
-            () => {
-                this._emitTime(nextTime.toISOString());
-                setTimeout(() => {
-                    this.start();
-                }, 0);
+            async () => {
+                this.start();
             },
             null,
             true
