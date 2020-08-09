@@ -21,6 +21,9 @@ export class PaperTrader extends EventEmitter {
     public warmup: number;
     public strategy: (data: AdvisorDataItem[]) => string;
     public side?: string;
+    public get active(): boolean {
+        return !!this.advisor;
+    }
 
     private advisor: Advisor;
 
