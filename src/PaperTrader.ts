@@ -47,7 +47,6 @@ export class PaperTrader extends EventEmitter {
     }
 
     public start() {
-        const startMoment = moment.utc();
         const {
             exchange,
             currency,
